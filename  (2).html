@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-приглашение Полине 7 лет — праздник 2025 от InviteLand</title>
+    <meta name="description" content="Современное онлайн-приглашение на день рождения Полины — с вишлистом, RSVP, игрой и Telegram. Создано с заботой в InviteLand.">
+    <meta name="keywords" content="онлайн приглашение, день рождения ребёнка, вишлист, игра на сайте, пригласить на праздник, 2025, Новокузнецк, InviteLand">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Rounded+Mplus+1c:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4a6ded598b.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Rounded Mplus 1c', sans-serif;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f9ff 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        .title-font {
+            font-family: 'Manrope', sans-serif;
+        }
+        .balloon {
+            animation: float 6s ease-in-out infinite;
+        }
+        .balloon:nth-child(2n) {
+            animation-delay: 1s;
+        }
+        .balloon:nth-child(3n) {
+            animation-delay: 2s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            opacity: 0.7;
+            animation: confetti-fall 5s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .polina {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('https://files.catbox.moe/ikqnjn.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            z-index: 100;
+            border-radius: 50%;
+            border: 3px solid #ff69b4;
+        }
+        .gift-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #ff69b4, #ff8e53);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #48dbfb, #1dd1a1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 219, 251, 0.4);
+        }
+        .footer-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .footer-glow:hover {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+        }
+        .program-card {
+            transition: all 0.3s ease;
+        }
+        .program-card:hover {
+            transform: scale(1.05);
+        }
+        .rsvp-form input, .rsvp-form textarea {
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        .rsvp-form input:focus, .rsvp-form textarea:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+        }
+        .order-form {
+            display: none;
+        }
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            transform: translateX(5px);
+        }
+        .polina-photo {
+            border-radius: 20px;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .polina-photo:hover {
+            transform: rotate(-5deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .photo-frame {
+            background: linear-gradient(45deg, #ff69b4, #ff8e53);
+            padding: 10px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    <!-- Confetti -->
+    <div id="confetti-container"></div>
+    
+    <!-- Running Polina -->
+    <div id="polina" class="polina hidden"></div>
+    <div id="catch-message" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white p-8 rounded-xl text-center max-w-md mx-4">
+            <h3 class="text-2xl font-bold text-pink-500 mb-4">Ты догнал именинницу!</h3>
+            <p class="text-lg mb-4">До встречи на празднике!</p>
+            <button onclick="closeCatchMessage()" class="btn-primary px-6 py-2 rounded-full font-bold">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative py-12 px-4 text-center">
+        <div class="absolute top-0 left-0 right-0 flex justify-between px-8">
+            <div class="balloon w-12 h-16 bg-pink-300 rounded-full"></div>
+            <div class="balloon w-10 h-14 bg-yellow-300 rounded-full"></div>
+            <div class="balloon w-12 h-16 bg-blue-300 rounded-full"></div>
+            <div class="balloon w-10 h-14 bg-green-300 rounded-full"></div>
+        </div>
+        
+        <div class="photo-frame">
+            <img src="https://files.catbox.moe/ikqnjn.png" alt="Полина" class="polina-photo w-48 h-48 object-cover">
+        </div>
+        
+        <h1 class="title-font text-5xl md:text-6xl font-bold text-pink-600 mb-4">Полине 7 лет!</h1>
+        <p class="text-xl md:text-2xl text-blue-600 mb-8">Ты приглашён на наш весёлый праздник!</p>
+        
+        <div class="countdown mb-4">
+            До праздника осталось: <span id="countdown-days"></span> дней!
+        </div>
+        
+        <div class="flex justify-center">
+            <div class="bg-white rounded-full px-6 py-3 shadow-lg flex items-center">
+                <i class="fas fa-calendar-alt text-pink-500 mr-2"></i>
+                <span class="font-bold">12 июля 2025</span>
+                <span class="mx-2">•</span>
+                <i class="fas fa-clock text-blue-500 mr-2"></i>
+                <span class="font-bold">14:00</span>
+            </div>
+        </div>
+        <div class="mt-6">
+            <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+            <span class="font-medium">Кафе «Сказка», ул. Ленина, 27, Новокузнецк</span>
+        </div>
+        <button onclick="startGame()" class="mt-8 btn-primary px-6 py-3 rounded-full font-bold flex items-center mx-auto pulse">
+            <i class="fas fa-gamepad mr-2"></i> Догони именинницу!
+        </button>
+    </header>
+
+    <!-- Quiz Section -->
+    <section class="py-12 px-4 bg-white bg-opacity-70">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="title-font text-3xl font-bold text-center mb-8 text-pink-600">Викторина: Кто лучше знает Полину?</h2>
+            <p class="text-center mb-8 text-gray-600">Проверь, насколько хорошо ты знаешь именинницу!</p>
+            
+            <div id="quiz-container" class="bg-white p-6 rounded-xl shadow-md">
+                <div id="quiz-question" class="text-xl font-bold mb-6"></div>
+                <div id="quiz-options" class="space-y-3"></div>
+                <div id="quiz-result" class="mt-6 text-center hidden">
+                    <p class="text-xl font-bold mb-4"></p>
+                    <button onclick="nextQuestion()" class="btn-primary px-6 py-2 rounded-full font-medium">Следующий вопрос</button>
+                </div>
+                <div id="quiz-final" class="mt-6 text-center hidden">
+                    <h3 class="text-2xl font-bold text-pink-500 mb-4">Викторина завершена!</h3>
+                    <p class="text-xl mb-4">Твой результат: <span id="quiz-score" class="font-bold">0</span> из <span id="quiz-total" class="font-bold">5</span></p>
+                    <p id="quiz-comment" class="text-lg mb-4"></p>
+                    <button onclick="resetQuiz()" class="btn-primary px-6 py-2 rounded-full font-medium">Пройти ещё раз</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+        <h2 class="title-font text-3xl font-bold text-center mb-12 text-pink-600">Программа праздника</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="program-card bg-white p-6 rounded-xl text-center shadow-md">
+                <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-paint-brush text-pink-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Мастер-класс</h3>
+                <p class="text-gray-600">Создадим волшебные поделки своими руками</p>
+            </div>
+            <div class="program-card bg-white p-6 rounded-xl text-center shadow-md">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-bubbles text-blue-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Шоу пузырей</h3>
+                <p class="text-gray-600">Гигантские пузыри и волшебные превращения</p>
+            </div>
+            <div class="program-card bg-white p-6 rounded-xl text-center shadow-md">
+                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-birthday-cake text-yellow-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Торт</h3>
+                <p class="text-gray-600">Вкуснейший торт с задуванием свечей</p>
+            </div>
+            <div class="program-card bg-white p-6 rounded-xl text-center shadow-md">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-camera text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Фотозона</h3>
+                <p class="text-gray-600">Яркие фото на память о празднике</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wishlist -->
+    <section class="py-12 px-4 bg-white bg-opacity-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="title-font text-3xl font-bold text-center mb-8 text-pink-600">Вишлист Полины</h2>
+            <p class="text-center mb-8 text-gray-600">Выберите подарок, который хотите подарить Полине</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="gift-card bg-white p-6 rounded-xl shadow-md flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-doll text-pink-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Кукла LOL</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-grow">Модная кукла с сюрпризом внутри</p>
+                    <button onclick="reserveGift(this, 'Кукла LOL')" class="btn-secondary px-4 py-2 rounded-full font-medium">Забронировать</button>
+                </div>
+                
+                <div class="gift-card bg-white p-6 rounded-xl shadow-md flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-cubes text-blue-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Конструктор LEGO</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-grow">Классический конструктор для творчества</p>
+                    <button onclick="reserveGift(this, 'Конструктор LEGO')" class="btn-secondary px-4 py-2 rounded-full font-medium">Забронировать</button>
+                </div>
+                
+                <div class="gift-card bg-white p-6 rounded-xl shadow-md flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-palette text-yellow-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Набор для творчества</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-grow">Все для рисования и рукоделия</p>
+                    <button onclick="reserveGift(this, 'Набор для творчества')" class="btn-secondary px-4 py-2 rounded-full font-medium">Забронировать</button>
+                </div>
+                
+                <div class="gift-card bg-white p-6 rounded-xl shadow-md flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-paw text-green-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Мягкий мишка</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-grow">Пушистый друг для объятий</p>
+                    <button onclick="reserveGift(this, 'Мягкий мишка')" class="btn-secondary px-4 py-2 rounded-full font-medium">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="title-font text-3xl font-bold text-center mb-8 text-pink-600">Место проведения</h2>
+            <div class="bg-white p-4 rounded-xl shadow-md">
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2286.123456789012!2d86.12345678901234!3d53.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTPCsDA3JzI0LjQiTiA4NsKwMDcnMjQuNCJF!5e0!3m2!1sen!2sru!4v1234567890123!5m2!1sen!2sru" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-medium"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i> Кафе «Сказка», ул. Ленина, 27, Новокузнецк</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Form -->
+    <section class="py-12 px-4 bg-pink-50">
+        <div class="max-w-md mx-auto">
+            <h2 class="title-font text-3xl font-bold text-center mb-8 text-pink-600">Подтверди участие</h2>
+            <form id="rsvp-form" class="rsvp-form bg-white p-6 rounded-xl shadow-md">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 mb-2">Имя родителя</label>
+                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-200">
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 mb-2">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-200">
+                </div>
+                <div class="mb-4">
+                    <label for="comment" class="block text-gray-700 mb-2">Комментарий (аллергии, пожелания)</label>
+                    <textarea id="comment" name="comment" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-200"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Выбранный подарок</label>
+                    <input type="text" id="selected-gift" name="selected-gift" readonly class="w-full px-4 py-2 border rounded-lg bg-gray-100">
+                </div>
+                <button type="submit" class="btn-primary w-full py-3 rounded-full font-bold mt-4">
+                    <i class="fas fa-check-circle mr-2"></i> Мы придём!
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="py-12 px-4 bg-gradient-to-r from-pink-100 to-blue-100">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="title-font text-3xl font-bold mb-4 text-pink-600">???? Только на детские приглашения — 999₽!</h2>
+                <p class="text-lg mb-6">Закажите такое же красивое приглашение для вашего праздника!</p>
+                <button onclick="showOrderForm()" class="btn-primary px-8 py-3 rounded-full font-bold inline-block">
+                    <i class="fas fa-shopping-cart mr-2"></i> Заказать приглашение
+                </button>
+                
+                <!-- Order Form (hidden by default) -->
+                <div id="order-form" class="order-form mt-6 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">Форма заказа</h3>
+                    <form id="order-form-content">
+                        <div class="mb-4">
+                            <label for="order-name" class="block text-gray-700 mb-2">Ваше имя</label>
+                            <input type="text" id="order-name" name="order-name" required class="w-full px-4 py-2 border rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label for="order-phone" class="block text-gray-700 mb-2">Телефон</label>
+                            <input type="tel" id="order-phone" name="order-phone" required class="w-full px-4 py-2 border rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label for="order-email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="order-email" name="order-email" class="w-full px-4 py-2 border rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label for="order-comment" class="block text-gray-700 mb-2">Комментарий к заказу</label>
+                            <textarea id="order-comment" name="order-comment" rows="3" class="w-full px-4 py-2 border rounded-lg"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full py-3 rounded-full font-bold">
+                            <i class="fas fa-paper-plane mr-2"></i> Отправить заказ
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-gradient-to-r from-blue-600 to-pink-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="footer-glow text-xl mb-4">Создано с заботой в InviteLand ????</p>
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="tel:+79234764547" class="hover:text-yellow-200 transition">
+                    <i class="fas fa-phone-alt mr-2"></i> +7 923 476-45-47
+                </a>
+            </div>
+            <p class="mb-6">© 2025 InviteLand. Все права защищены.</p>
+            <a href="https://ведущийновокузнецк.рф" class="footer-glow inline-block bg-black bg-opacity-20 px-6 py-3 rounded-full font-bold border border-white border-opacity-30 hover:bg-opacity-30 transition">
+                <i class="fas fa-child mr-2"></i> Аниматор для ваших детей
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#ff69b4', '#48dbfb', '#ff8e53', '#1dd1a1', '#feca57'];
+            const container = document.getElementById('confetti-container');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation ends
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Run confetti periodically
+        setInterval(createConfetti, 3000);
+        createConfetti();
+        
+        // Countdown to the event
+        function updateCountdown() {
+            const eventDate = new Date('2025-07-12T14:00:00');
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown-days').textContent = '0';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('countdown-days').textContent = days;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 86400000); // Update once per day
+        
+        // Quiz data
+        const quizQuestions = [
+            {
+                question: "Какой любимый цвет Полины?",
+                options: ["Розовый", "Голубой", "Фиолетовый", "Зелёный"],
+                correct: 0
+            },
+            {
+                question: "Какое любимое блюдо Полины?",
+                options: ["Пицца", "Блины", "Спагетти", "Пельмени"],
+                correct: 1
+            },
+            {
+                question: "Какой мультфильм Полина любит больше всего?",
+                options: ["Холодное сердце", "Моана", "Русалочка", "Рапунцель"],
+                correct: 0
+            },
+            {
+                question: "Какое любимое время года у Полины?",
+                options: ["Зима", "Весна", "Лето", "Осень"],
+                correct: 2
+            },
+            {
+                question: "Какой у Полины любимый предмет в школе?",
+                options: ["Математика", "Рисование", "Физкультура", "Чтение"],
+                correct: 1
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        
+        // Initialize quiz
+        function initQuiz() {
+            document.getElementById('quiz-final').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            showQuestion();
+        }
+        
+        // Show current question
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('quiz-question').textContent = `Вопрос ${currentQuestion + 1}: ${question.question}`;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'quiz-option bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-pink-100';
+                optionElement.textContent = option;
+                optionElement.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            document.getElementById('quiz-result').classList.add('hidden');
+        }
+        
+        // Check answer
+        function checkAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestion];
+            const resultElement = document.getElementById('quiz-result');
+            const resultText = resultElement.querySelector('p');
+            
+            if (selectedIndex === question.correct) {
+                resultText.textContent = 'Правильно! ????';
+                resultText.className = 'text-xl font-bold mb-4 text-green-500';
+                score++;
+            } else {
+                resultText.textContent = `Неверно! Правильный ответ: ${question.options[question.correct]}`;
+                resultText.className = 'text-xl font-bold mb-4 text-red-500';
+            }
+            
+            document.getElementById('quiz-options').classList.add('hidden');
+            resultElement.classList.remove('hidden');
+        }
+        
+        // Next question
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < quizQuestions.length) {
+                showQuestion();
+                document.getElementById('quiz-options').classList.remove('hidden');
+                document.getElementById('quiz-result').classList.add('hidden');
+            } else {
+                showFinalResults();
+            }
+        }
+        
+        // Show final results
+        function showFinalResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-final').classList.remove('hidden');
+            
+            document.getElementById('quiz-score').textContent = score;
+            document.getElementById('quiz-total').textContent = quizQuestions.length;
+            
+            let comment = '';
+            const percentage = (score / quizQuestions.length) * 100;
+            
+            if (percentage >= 80) {
+                comment = 'Ты отлично знаешь Полину! Она будет рада видеть тебя на празднике!';
+            } else if (percentage >= 50) {
+                comment = 'Неплохо! Но есть ещё что узнать о Полине.';
+            } else {
+                comment = 'Похоже, тебе нужно больше общаться с Полиной!';
+            }
+            
+            document.getElementById('quiz-comment').textContent = comment;
+        }
+        
+        // Reset quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            initQuiz();
+        }
+        
+        // Initialize quiz on page load
+        window.onload = initQuiz;
+        
+        // Gift reservation
+        let selectedGift = null;
+        
+        function reserveGift(button, giftName) {
+            if (selectedGift) {
+                alert('Вы уже выбрали подарок. Один гость — один подарок.');
+                return;
+            }
+            
+            selectedGift = giftName;
+            document.getElementById('selected-gift').value = giftName;
+            
+            button.textContent = 'Забронировано!';
+            button.classList.remove('btn-secondary');
+            button.classList.add('bg-gray-300', 'cursor-not-allowed');
+            button.disabled = true;
+            
+            // Disable all other gift buttons
+            const allButtons = document.querySelectorAll('.gift-card button');
+            allButtons.forEach(btn => {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        }
+        
+        // RSVP Form submission
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const comment = document.getElementById('comment').value;
+            const gift = document.getElementById('selected-gift').value;
+            
+            // Telegram bot integration
+            const botToken = '7544055793:AAGFmhYinpb6s-VhSDPRBmMQwhpyZaJs4C8';
+            const chatId = '5597848172';
+            const message = `Заявка с приглашения Полины:
+???? Родитель: ${name}
+???? Телефон: ${phone}
+???? Комментарий: ${comment || 'нет'}
+???? Подарок: ${gift || 'не выбран'}
+???? Дата: 12 июля 2025, 14:00
+???? Кафе «Сказка», Новокузнецк`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Спасибо! Ваше участие подтверждено. До встречи на празднике!');
+                document.getElementById('rsvp-form').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+            });
+        });
+        
+        // Order form functions
+        function showOrderForm() {
+            document.getElementById('order-form').style.display = 'block';
+        }
+        
+        // Order form submission
+        document.getElementById('order-form-content').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('order-name').value;
+            const phone = document.getElementById('order-phone').value;
+            const email = document.getElementById('order-email').value;
+            const comment = document.getElementById('order-comment').value;
+            
+            // Telegram bot integration for order
+            const botToken = '7544055793:AAGFmhYinpb6s-VhSDPRBmMQwhpyZaJs4C8';
+            const chatId = '5597848172';
+            const message = `Новый заказ приглашения:
+???? Имя: ${name}
+???? Телефон: ${phone}
+???? Email: ${email || 'не указан'}
+???? Комментарий: ${comment || 'нет'}
+???? Стоимость: 999₽
+???? Источник: Демо-приглашение Полины`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                document.getElementById('order-form-content').reset();
+                document.getElementById('order-form').style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке заказа. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.');
+            });
+        });
+        
+        // Polina running game
+        let gameInterval;
+        let gameStarted = false;
+        let polinaCaught = false;
+        
+        function startGame() {
+            if (gameStarted) return;
+            
+            gameStarted = true;
+            polinaCaught = false;
+            const polina = document.getElementById('polina');
+            polina.classList.remove('hidden');
+            
+            let posX = 0;
+            let posY = 0;
+            let speedX = 2;
+            let speedY = 1;
+            
+            function movePolina() {
+                if (polinaCaught) return;
+                
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                
+                posX += speedX;
+                posY += speedY;
+                
+                // Bounce off edges
+                if (posX <= 0 || posX >= windowWidth - 80) {
+                    speedX = -speedX * (0.8 + Math.random() * 0.4);
+                }
+                if (posY <= 0 || posY >= windowHeight - 80) {
+                    speedY = -speedY * (0.8 + Math.random() * 0.4);
+                }
+                
+                // Random direction changes
+                if (Math.random() < 0.02) {
+                    speedX = (Math.random() - 0.5) * 5;
+                }
+                if (Math.random() < 0.02) {
+                    speedY = (Math.random() - 0.5) * 5;
+                }
+                
+                polina.style.left = posX + 'px';
+                polina.style.top = posY + 'px';
+            }
+            
+            gameInterval = setInterval(movePolina, 20);
+        }
+        
+        function closeCatchMessage() {
+            document.getElementById('catch-message').classList.add('hidden');
+            document.getElementById('polina').classList.add('hidden');
+            gameStarted = false;
+            clearInterval(gameInterval);
+        }
+        
+        // Catch Polina
+        document.getElementById('polina').addEventListener('click', function() {
+            if (!gameStarted || polinaCaught) return;
+            
+            polinaCaught = true;
+            clearInterval(gameInterval);
+            document.getElementById('catch-message').classList.remove('hidden');
+            
+            // Confetti celebration
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createConfetti, i * 30);
+            }
+        });
+        
+        // Touch support for mobile
+        document.getElementById('polina').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (!gameStarted || polinaCaught) return;
+            
+            polinaCaught = true;
+            clearInterval(gameInterval);
+            document.getElementById('catch-message').classList.remove('hidden');
+            
+            // Confetti celebration
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createConfetti, i * 30);
+            }
+        });
+    </script>
+</body>
+</html>
